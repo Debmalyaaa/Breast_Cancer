@@ -47,7 +47,3 @@ The Wisconsin Breast Cancer Diagnostic Dataset contains:
 - Important features included radius_mean, concave points_worst, and perimeter_worst
 
 
-## How to Run
-1. **Prerequisites**
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
