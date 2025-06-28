@@ -1,75 +1,53 @@
-# 🧬 Breast Cancer Prediction using Machine Learning
+# Breast Cancer Diagnosis Prediction
 
-## Overview
+## Objective
+This project aims to predict whether a breast tumor is malignant (cancerous) or benign (non-cancerous) based on various tumor characteristics. The model helps support early and accurate diagnosis, which is crucial for effective treatment planning.
 
-This project focuses on the prediction of breast cancer malignancy using supervised machine learning models. The objective is to build a reliable classification model that can assist in distinguishing between benign and malignant tumors based on various medical features, thereby supporting early diagnosis and clinical decision-making.
+## Tech Stack
+- **Programming Language**: Python 3  
+- **Data Processing**: Pandas, NumPy  
+- **Visualization**: Seaborn, Matplotlib  
+- **Machine Learning**: scikit-learn  
+- **Feature Selection**: SelectKBest  
+- **Model**: Random Forest Classifier  
 
----
+## Dataset
+The Wisconsin Breast Cancer Diagnostic Dataset contains:
+- 569 instances (357 benign, 212 malignant)
+- 30 features computed from digitized images of fine needle aspirates (FNA)
+- Target variable: diagnosis (M = malignant, B = benign)
 
-## Technologies Used
+## Project Workflow
+1. **Data Collection & Exploration**
+   - Loaded and examined dataset structure
+   - Checked for missing values (none found)
+   - Analyzed basic statistics
 
-- **Language:** Python  
-- **Libraries:** Pandas, NumPy, Seaborn, Matplotlib, scikit-learn  
-- **Algorithms:** Logistic Regression, Decision Tree, Random Forest, Support Vector Machine (SVM), K-Nearest Neighbors (KNN)  
-- **Dataset:** Breast Cancer Wisconsin (Diagnostic) Dataset (`data.csv`)
-
----
-
-## Project Structure
-
-1. **Data Ingestion & Cleaning**
-   - Loaded dataset and removed irrelevant features.
-   - Checked for and handled missing values.
-
-2. **Exploratory Data Analysis**
-   - Analyzed distribution of features across diagnosis classes.
-   - Visualized feature correlations to identify strong predictors.
+2. **Feature Engineering**
+   - Dropped unnecessary columns (id, Unnamed: 32)
+   - Identified 30 numerical features
+   - Encoded target variable (M=1, B=0)
 
 3. **Data Preprocessing**
-   - Standardized numerical features using `StandardScaler`.
-   - Encoded categorical target variable.
+   - Split data into train/test sets (80/20 ratio)
+   - Applied StandardScaler for feature normalization
+   - Used SelectKBest for feature selection (top 15 features)
 
-4. **Model Development**
-   - Trained multiple classification models.
-   - Evaluated model performance using metrics such as accuracy, precision, recall, F1-score, and confusion matrix.
+4. **Model Training**
+   - Implemented Random Forest Classifier
+   - Set parameters: n_estimators=100, bootstrap=True
 
-5. **Model Comparison**
-   - Compared performance across classifiers.
-   - Selected the best-performing model based on both predictive accuracy and generalization.
+5. **Evaluation**
+   - Achieved accuracy score on test set
+   - Performed 5-fold cross-validation
 
----
+## Key Findings
+- The Random Forest model achieved **96.5% accuracy** on the test set
+- Cross-validation scores showed consistent performance (scores: [0.96, 0.95, 0.96, 0.93, 0.96])
+- Important features included radius_mean, concave points_worst, and perimeter_worst
 
-## Key Observations
 
-- **Class Balance:** The dataset is fairly balanced between benign and malignant cases.
-- **Top Features:** Attributes such as `mean radius`, `concave points`, and `texture` show high correlation with the diagnosis outcome.
-- **Model Performance:** Random Forest and SVM demonstrated the highest accuracy, offering robust performance on test data.
-
----
-
-## Results Summary
-
-| Model                | Accuracy   |
-|---------------------|------------|
-| Logistic Regression | xx.xx%     |
-| Decision Tree       | xx.xx%     |
-| Random Forest       | xx.xx% ✅  |
-| Support Vector SVM  | xx.xx% ✅  |
-| K-Nearest Neighbors | xx.xx%     |
-
-✅ Indicates top-performing models based on accuracy and reliability.
-
----
-
-## Running the Project
-
-1. Open `breast cancer.ipynb` using **Google Colab** or **Jupyter Notebook**.
-2. Ensure `data.csv` is placed in the working directory.
-3. Execute the notebook sequentially to perform data processing, model training, and evaluation.
-
-**Google Colab Users:**  
-Use the following snippet to mount your Google Drive:
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-data = pd.read_csv('/content/drive/MyDrive/path_to_your_dataset/data.csv')
+## How to Run
+1. **Prerequisites**
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn
